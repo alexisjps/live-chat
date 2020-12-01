@@ -13,7 +13,7 @@ class RoomsController < ApplicationController
       @room = Room.new permitted_parameters
   
       if @room.save
-        flash[:success] = "Room #{@room.name} création avec succès !"
+        flash[:success] = "Room #{@room.name} was created successfully"
         redirect_to rooms_path
       else
         render :new
@@ -25,13 +25,18 @@ class RoomsController < ApplicationController
   
     def update
       if @room.update_attributes(permitted_parameters)
-        flash[:success] = "Room #{@room.name} mise à jour avec succès !"
+        flash[:success] = "Room #{@room.name} was updated successfully"
         redirect_to rooms_path
       else
         render :new
       end
     end
-  
+    
+    def show
+        @room_message = RoomMessage.new room: @room
+        @room_messages = @room.room_messages.includes(:user)
+      end
+      
     protected
   
     def load_entities
