@@ -6,7 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag '/packs/application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -14,7 +14,10 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <%= yield %>
+          <%= render partial: 'shared/navigation_bar' %>
+          <div class="my-3">
+            <%= yield %>
+          </div>
         </div>
       </div>
     </div>
